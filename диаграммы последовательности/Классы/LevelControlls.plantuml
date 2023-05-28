@@ -1,0 +1,50 @@
+@startuml
+
+class LevelPrefsIO {
+    +PlayerPosition PlayerPosition
+    +int EnemyCount
+    +int[] PaintedWalls
+    +string FileName
+    +LoadFromFile() : LevelPrefs
+    +SaveToFile() : void
+    +SaveToFile(jsonString: string) : void
+    +ReadToString(name: string) : string
+    -SaveToFileDefaults() : void
+}
+
+class LevelPrefsController {
+    - _gameParrameters : InitialGameParameters
+    - _form : LevelPrefsForm
+    - _levelPrefsIO : LevelPrefsIO
+    +SendData() : void
+    +SendData(remoteAplyer: string) : void
+}
+
+class PlayerPosition {
+    +x: float
+    +y: float
+}
+
+class LevelPrefs {
+    +PlayerPosition: PlayerPosition
+    +EnemyCount: int
+    +PaintedWalls: int[]
+}
+
+class LevelPrefsForm {
+    + Login : string
+    + LevelId :string
+    + LevelPrefs : string
+}
+
+abstract class BaseForm {
+    +SetForm(): WWWForm
+}
+
+LevelPrefsIO o-- LevelPrefs
+LevelPrefsController *-- LevelPrefsForm
+LevelPrefsController *-- LevelPrefsIO
+LevelPrefs --> PlayerPosition
+LevelPrefsForm ..|> BaseForm
+
+@enduml

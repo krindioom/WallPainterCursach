@@ -1,0 +1,65 @@
+@startuml
+class CameraMovement {
+  + LerpSpeed: float
+  + Player: PlayerMovement
+  - Start()
+  - FixedUpdate()
+  - Follow()
+}
+class PlayerMovement {
+  + Speed: float
+  + RotateOffset: float
+  - _rigidbody: Rigidbody2D
+  - Start()
+  - FixedUpdate()
+  - Move()
+  - Rotate()
+}
+
+class LevelPrefsIO {
+    +PlayerPosition PlayerPosition
+    +int EnemyCount
+    +int[] PaintedWalls
+    +string FileName
+    +LoadFromFile() : LevelPrefs
+    +SaveToFile() : void
+    +SaveToFile(jsonString: string) : void
+    +ReadToString(name: string) : string
+    -SaveToFileDefaults() : void
+}
+
+class LevelUI {
+  - _levelPrefs: LevelPrefsIO
+  - _levelConfigurer: LevelConfigurer
+  - Start()
+  + PauseGame()
+  + ResumeGame()
+  + QuitGame()
+}
+
+class LevelPrefsController{
+  - _gameParrameters : InitialGameParameters
+    - _form : LevelPrefsForm
+    - _levelPrefsIO : LevelPrefsIO
+    +SendData() : void
+    +SendData(remoteAplyer: string) : void
+}
+
+class LevelConfigurer {
+  - _levelPrefs: LevelPrefsIO
+  - _levelPrefsController: LevelPrefsController
+  - _player: PlayerMovement
+  - _camera: CameraMovement
+  - _instatiatedPlayer: PlayerMovement
+  - Awake()
+  - Update()
+  - SaveData()
+}
+CameraMovement o-- PlayerMovement
+LevelUI o-- LevelPrefsIO
+LevelUI o-- LevelConfigurer
+LevelConfigurer *-- LevelPrefsIO
+LevelConfigurer *-- LevelPrefsController
+LevelConfigurer o-- PlayerMovement
+LevelConfigurer o-- CameraMovement
+@enduml

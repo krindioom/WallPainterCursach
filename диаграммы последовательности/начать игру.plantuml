@@ -1,0 +1,19 @@
+@startuml startGame
+actor Пользователь as player
+
+boundary menu as "главное меню"
+entity l_bd as "бд параметров уровня"
+entity p_bd as "бд параметров игрока"
+boundary game as "сцена игры"
+control StartController as "контроллер входа на уровень"
+
+player -> menu : start_game_btn_pressed()
+menu -> StartController : start_game()
+StartController -> p_bd : get_player_data()
+StartController <-- p_bd
+StartController -> l_bd : get_level_data()
+StartController <-- l_bd
+StartController -> game : set_player_data(data)
+StartController -> game : set_level_data(data)
+player <-- game : show_game_scene()
+@enduml 

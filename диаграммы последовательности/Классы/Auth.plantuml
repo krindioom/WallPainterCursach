@@ -1,0 +1,36 @@
+@startuml a 
+
+abstract class  AuthorizeController {
+    # _login : TMP_InputField
+    # _password : TMP_InputField
+    # IsDataCorrect() : bool
+    #  _initialGameParameters : InitialGameParameters
+    # AuthorizePlayer(form : AuthorizeForm , connectionPath : string) : IEnumerator
+}
+
+class LoginController {
+    - _form : AuthorizeForm
+    -LoginPlayer(): void
+}
+
+class RegisterController {
+    - _form : AuthorizeForm 
+    - _confirmPassword : TMP_InputField
+    -CreatePlayer() : void
+}
+
+class AuthorizeForm {
+    +Login : string 
+    +Password : string 
+}
+
+abstract class BaseForm{
+    +SetForm() : WWWForm
+}
+
+AuthorizeController <|-- LoginController
+AuthorizeController <|-- RegisterController
+AuthorizeController o-- AuthorizeForm
+AuthorizeForm ..|> BaseForm
+
+@enduml

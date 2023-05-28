@@ -1,0 +1,44 @@
+@startuml
+actor Пользователь as player
+
+boundary "панель регистрации" as panel
+control "Контроллер авторизации" as auth
+entity "сервер" as server
+boundary "меню" as menu
+
+player -> panel
+
+ref over player : нажата кнопка входа
+
+panel <- auth : get_data()
+panel --> auth
+auth -> auth : check_form()
+
+alt valid
+   auth -> server : send_to_server(data)
+   server -> server : check_user_existence(user)
+   server -> server : check_password(password)
+   server --> auth : send_success_message(msg)
+   auth --> panel : show_succes_message(msg)
+   auth -> menu : refer_to_menu()
+
+   else fields not valid
+   auth --> panel : send_incorrect_fields(msg)
+   
+   else user doesn't exists
+
+   auth -> server : send_to_server(data)
+   server -> server : check_user_existence(user)
+   server --> auth : send_user_does_not_exist_exists_message(msg)
+   auth --> panel : show_user_does_not_exist_exists_message(msg)
+
+   else incorrect password
+
+   auth -> server : send_to_server(data)
+   server -> server : check_user_existence(user)
+   server -> server : check_user_password(password)
+   server --> auth : send_incorrect_password_message(msg)
+   auth --> panel : show_incorrect_password_message(msg)
+   
+end
+@enduml 

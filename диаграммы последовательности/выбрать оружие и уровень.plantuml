@@ -1,0 +1,53 @@
+@startuml gunAndLevelCheck
+actor Пользователь as player
+boundary menu as "главное меню"
+boundary weapon as "окно выбора оружия"
+boundary level as "окно выбора уровня"
+entity bd as "файл параметров игрока"
+entity lbd as "файл параметров уровня"
+entity sbd as "БД"
+
+player -> menu : open_weapons_window_btn_pressed()
+menu -> weapon : open_weapons_window()
+menu <-- weapon : show_weapons_window()
+
+alt weapon selected
+    player -> weapon : select_weapon()
+    weapon -> bd : set_weapon(weapon)
+    player -> weapon : close_window()
+    weapon -> player : show_menu()
+    else weapon not selected
+        player -> weapon : close_window()
+        weapon -> player : show_menu()
+end
+
+player -> menu : open_levels_window_btn_pressed()
+menu -> level : open_levels_window()
+menu <-- level : show_levels_window()
+
+alt level selected
+    player -> level : select_level()
+    level -> sbd : get_level_data(level)
+    sbd --> lbd : set_level_data(data)
+    level -> bd : set_level(level)
+    player -> level : close_window()
+    level -> player : show_menu()
+    else level not selected
+        player -> level : close_window()
+        level -> player : show_menu()
+end
+
+' alt all selected
+' player -> weapon : select_weapon()
+' weapon -> bd : set_weapon(weapon)
+
+' player -> level : select_level()
+' level -> bd : set_level(level)
+
+' else nothing is selected
+
+' bd -> bd : set_default_weapon()
+' bd -> bd : set_default_level()
+
+' end
+@enduml 

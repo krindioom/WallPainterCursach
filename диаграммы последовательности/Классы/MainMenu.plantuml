@@ -1,0 +1,47 @@
+@startuml
+
+class StartParametersHandler {
+  -_parameters : InitialGameParameters
+  +SelectWeapon(gun: GunUI): void
+  +SelectLevel(level: LevelParameters): void
+}
+
+class InitialGameParameters {
+  +Login : string
+  +Level : LevelParameters
+  +Gun : GunParameters
+}
+
+class GameStarter {
+  -_parameters : InitialGameParameters
+  +StartGame(): void
+}
+
+class LevelParameters {
+  +Id : int
+  +Name : string
+  +Difficulty : int
+  +Description : string
+}
+
+class GunParameters {
+  +Distance : float
+  +BulletsCount : int
+  +Damage : float
+  +Speed : float
+  +Shoot : ParticleSystem
+}
+
+class GunUI {
+  +Gun : GunParameters
+}
+
+StartParametersHandler o-- InitialGameParameters
+GameStarter *- InitialGameParameters
+InitialGameParameters o-- LevelParameters
+InitialGameParameters o-- GunParameters
+StartParametersHandler o- GunUI
+StartParametersHandler o- LevelParameters
+GunUI -> GunParameters
+
+@enduml

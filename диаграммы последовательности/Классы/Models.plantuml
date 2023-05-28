@@ -1,0 +1,34 @@
+@startuml
+
+class LevelPrefs {
+  +PlayerPosition : PlayerPosition
+  +EnemyCount : int
+  +PaintedWalls : int[]
+}
+
+class PlayerPosition {
+  +x : float
+  +y : float
+}
+
+class LevelParameters {
+  +Id : int
+  +Name : string
+  +Difficulty : int
+  +Description : string
+}
+
+class GunParameters {
+  +Distance : float
+  +BulletsCount : int
+  +Damage : float
+  +Speed : float
+  +Shoot : ParticleSystem
+}
+
+class GunUI {
+  +Gun : GunParameters
+}
+
+@enduml
+

@@ -1,0 +1,14 @@
+@startuml stats
+actor Пользователь as player
+boundary levels as "окно выбора уровня"
+boundary table as "таблица статистики"
+entity bd as "бд статистики прохождения уровня"
+
+
+player -> levels : open_table_btn_pressed(int level_id)
+levels -> table : open_table();
+table -> bd : get_level_data(int level_id)
+bd -> bd : find_data()
+bd --> table : return_data()
+table --> levels : show_table(); 
+@enduml 

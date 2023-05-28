@@ -1,0 +1,32 @@
+@startuml register
+actor Пользователь as player
+
+boundary "панель регистрации" as panel
+entity "сервер" as server
+control "контроллер авторизации" as auth
+boundary "меню" as menu
+
+
+player -> panel : ввёл данные
+player -> panel : acept_btn_pressed()
+panel -> auth : send_data();
+auth -> auth : check_data();
+
+
+alt fields valid
+   auth -> server : find_user(data)
+   server -> server : check_user_existence(user)
+   alt user exists
+      server --> auth : send__user_exists_message(msg)
+      auth --> panel : show__user_exists_message(msg)
+      else user doesn't exists
+      server --> auth : send_success_message(msg)
+      auth --> panel : show_succes_message(msg)
+      auth -> menu : refer_to_menu()
+      auth -> player : show_menu()
+   end
+
+   else fields not valid
+   auth --> panel : send_incorrect_fields(msg)
+end
+@enduml 

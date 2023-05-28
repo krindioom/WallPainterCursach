@@ -1,0 +1,42 @@
+@startuml
+actor Пользователь as player
+
+boundary "панель регистрации" as panel
+entity "сервер" as server
+boundary "меню" as menu
+
+ref over player : нажата кнопка входа
+
+player -> panel
+
+alt valid
+   panel -> panel : check_form()
+   panel -> server : send_to_server()
+   server -> server : check_user_existence()
+   server -> server : check_password()
+   server --> panel : send_success_message()
+   panel -> menu : refer_to_menu()
+
+   else fields not valid
+   panel -> panel : check_form()
+   panel --> player : fields_incorrect()
+   
+   else user doesn't exists
+
+   panel -> panel : check_form()
+   panel -> server : send_to_server()
+   server -> server : check_user_existence()
+   server --> panel : send_user_does_not_exist_exists_message()
+
+
+   else incorrect password
+
+   panel -> panel : check_form()
+   panel -> server : send_to_server()
+   server -> server : check_user_existence()
+   server -> server : check_user_password()
+   server --> panel : send_incorrect_password_message()
+   panel --> player
+   
+end
+@enduml 

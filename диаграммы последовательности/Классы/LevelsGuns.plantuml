@@ -1,0 +1,21 @@
+@startuml
+    class StartParametersHandler {
+        - _parameters : InitialGameParameters
+        + SelectWeapon(gun : GunUI) : void
+        + SelectWeapon(level : LevelParmeters) : void
+    }
+
+    class InitialGameParameters {
+        + Login : string
+        + Level : LevelParmeters
+        + Gun : GunParameters
+    }
+
+    class GameStarter {
+        - _parameters : InitialGameParameters
+        + StartGame() : void
+    }
+
+    GameStarter -> InitialGameParameters
+    StartParametersHandler -> InitialGameParameters
+@enduml

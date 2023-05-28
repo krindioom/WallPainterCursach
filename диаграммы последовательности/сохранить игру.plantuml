@@ -1,0 +1,44 @@
+@startuml save
+actor Пользователь as player
+
+entity bd as "файл параметров уровня"
+boundary pause as "окно паузы"
+boundary game as "сцена игры"
+boundary menu as "главное меню"
+
+player -> game : open_pause_btn_pressed()
+game --> pause : open_pause()
+
+alt quit button is pressed
+player -> pause : quit_btn_pressed()
+game -> bd : save_data()
+game -> menu : open_menu_scene()
+menu --> player : show_menu_scene()
+
+    else back to game button pressed
+        player -> pause : back_to_game_btn_pressed()
+        pause -> pause : close_pause()
+        pause -> game : open_game_scene()
+        game --> player : show_game_scene()
+end
+
+
+
+
+
+
+' player -> pause : on_pause_clicked()
+
+' alt exit button is pressed
+
+' game -> bd : save_data()
+
+' player -> menu
+
+' else back to game button is pressed
+
+' pause -> pause : close_pause()
+' player -> game
+' end
+
+@enduml 
