@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671cea1d541d344428e2f02af3625520, type: 3}
   m_Name: InitialGameParameters
   m_EditorClassIdentifier: 
+  Level: {fileID: 11400000, guid: 9649572d86500df4485b8b6b764f5360, type: 2}
+  Gun: {fileID: 11400000, guid: aae0822fc4722db44a5d5e56166b81d9, type: 2}

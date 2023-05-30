@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &302426994
 RectTransform:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d275060273fc4be43ba5d6e6a57b4212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _login: {fileID: 1868816142}
+  _login: {fileID: 1975118753}
   _alert: {fileID: 1588283996}
   _password: {fileID: 1868816142}
   _initialGameParameters: {fileID: 11400000, guid: 31aec39e19c709842879fe89488c556c, type: 2}
@@ -2773,7 +2773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &964074294
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4699,7 +4699,7 @@ GameObject:
   - component: {fileID: 1975118754}
   - component: {fileID: 1975118753}
   m_Layer: 0
-  m_Name: Password
+  m_Name: Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

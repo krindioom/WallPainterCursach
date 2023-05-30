@@ -6,7 +6,7 @@ public class InitialGameParameters : ScriptableObject
 {
     public string Login { get; set; }
 
-    public LevelParameters Level { get; set; }
+    public LevelParameters Level;
 
-    public GunParameters Gun { get; set; }
+    public GunParameters Gun;
 }

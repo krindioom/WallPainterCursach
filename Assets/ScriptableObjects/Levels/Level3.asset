@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   Id: 3
-  Name: Level2
+  Name: Level3
   Difficulty: 5
   Description: no

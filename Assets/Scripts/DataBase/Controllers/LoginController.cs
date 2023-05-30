@@ -26,7 +26,7 @@ public class LoginController : AuthorizeController
 
     protected override void LoadScene(AuthorizeForm form)
     {
-        if (Encrypt(requestText) == form.Password)
+        if (requestText == form.Login)
         {
             _initialGameParameters.Login = form.Login;
             SceneManager.LoadSceneAsync("MainMenu");
